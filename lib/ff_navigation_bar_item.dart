@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'ff_navigation_bar_theme.dart';
 import 'dart:ui' as ui;
+import 'package:badges/badges.dart';
 
 // This class has mutable instance properties as they are used to store
 // calculated values required by multiple build functions but not known
@@ -20,6 +21,12 @@ class FFNavigationBarItem extends StatelessWidget {
   Color? selectedBackgroundColor;
   Color? selectedForegroundColor;
   Color? selectedLabelColor;
+
+  bool? toAnimate = false;
+  BadgeShape? shape = BadgeShape.circle;
+  Color? badgeColor = Colors.deepPurple;
+  BorderRadiusGeometry? borderRadius = BorderRadius.circular(8);
+  Widget? badgeContent = Text('BADGE', style: TextStyle(color: Colors.white));
 
   int? index;
   int? selectedIndex;
@@ -55,7 +62,13 @@ class FFNavigationBarItem extends StatelessWidget {
     this.selectedLabelColor,
     this.iconData,
     this.animationDuration = kDefaultAnimationDuration,
-    this.onClick,
+    this.onClick, 
+    this.toAnimate,
+    this.shape,
+    this.badgeColor,
+    this.borderRadius,
+    this.badgeContent,
+
   }) : super(key: key);
 
   Center _makeLabel(String label) {
@@ -174,7 +187,13 @@ class FFNavigationBarItem extends StatelessWidget {
     Widget iconAreaWidget = _makeIconArea(itemWidth, iconData);
     Widget shadowWidget = showSelectedItemShadow ? _makeShadow() : Container();
 
-    return AnimatedContainer(
+    return Badge(
+              toAnimate: toAnimate ,
+        shape: shape ,
+        badgeColor: badgeColor ,
+        borderRadius: borderRadius ,
+        badgeContent: badgeContent ,
+      child: AnimatedContainer(
       width: itemWidth,
       height: double.maxFinite,
       duration: animationDuration,
@@ -202,6 +221,7 @@ class FFNavigationBarItem extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),
+);
   }
 }
