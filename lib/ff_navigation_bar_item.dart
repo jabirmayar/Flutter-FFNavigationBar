@@ -22,6 +22,7 @@ class FFNavigationBarItem extends StatelessWidget {
   Color? selectedForegroundColor;
   Color? selectedLabelColor;
 
+  final bool showBadge;
   bool? toAnimate = false;
   BadgeShape? shape = BadgeShape.circle;
   Color? badgeColor = Colors.deepPurple;
@@ -56,6 +57,7 @@ class FFNavigationBarItem extends StatelessWidget {
   FFNavigationBarItem({
     Key? key,
     required this.label,
+    required this.showBadge,
     this.itemWidth = 60,
     this.selectedBackgroundColor,
     this.selectedForegroundColor,
@@ -187,6 +189,7 @@ class FFNavigationBarItem extends StatelessWidget {
     Widget iconAreaWidget = _makeIconArea(itemWidth, iconData);
     Widget shadowWidget = showSelectedItemShadow ? _makeShadow() : Container();
 
+     if(showBadge)
     return Badge(
               toAnimate: toAnimate!,
         shape: shape!,
@@ -223,5 +226,35 @@ class FFNavigationBarItem extends StatelessWidget {
       ),
     ),
 );
+    else 
+      return AnimatedContainer(
+      width: itemWidth,
+      height: double.maxFinite,
+      duration: animationDuration,
+      child: SizedBox(
+        width: itemWidth,
+        height: itemHeight,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: <Widget>[
+            Positioned(
+              top: topOffset,
+              left: -itemWidth / 2,
+              right: -itemWidth / 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: iconTopSpacer),
+                  iconAreaWidget,
+                  labelWidget,
+                  SizedBox(height: shadowTopSpacer),
+                  shadowWidget,
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
   }
 }
