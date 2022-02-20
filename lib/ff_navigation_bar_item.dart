@@ -255,6 +255,6 @@ class FFNavigationBarItem extends StatelessWidget {
           ],
         ),
       ),
-    ),
+    );
   }
 }
