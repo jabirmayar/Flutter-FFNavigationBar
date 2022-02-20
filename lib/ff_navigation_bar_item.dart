@@ -188,11 +188,11 @@ class FFNavigationBarItem extends StatelessWidget {
     Widget shadowWidget = showSelectedItemShadow ? _makeShadow() : Container();
 
     return Badge(
-              toAnimate: toAnimate ,
-        shape: shape ,
-        badgeColor: badgeColor ,
-        borderRadius: borderRadius ,
-        badgeContent: badgeContent ,
+              toAnimate: toAnimate!,
+        shape: shape!,
+        badgeColor: badgeColor!,
+        borderRadius: borderRadius!,
+        badgeContent: badgeContent!,
       child: AnimatedContainer(
       width: itemWidth,
       height: double.maxFinite,
