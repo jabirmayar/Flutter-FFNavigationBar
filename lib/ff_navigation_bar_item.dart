@@ -28,6 +28,8 @@ class FFNavigationBarItem extends StatelessWidget {
   Color? badgeColor = Colors.deepPurple;
   BorderRadiusGeometry? borderRadius = BorderRadius.circular(8);
   Widget? badgeContent = Text('BADGE', style: TextStyle(color: Colors.white));
+  BadgePosition? position;
+  BadgeAnimationType animationType = BadgeAnimationType.scale,
 
   int? index;
   int? selectedIndex;
@@ -58,6 +60,7 @@ class FFNavigationBarItem extends StatelessWidget {
     Key? key,
     required this.label,
     required this.showBadge,
+    required this.animationType,
     this.itemWidth = 60,
     this.selectedBackgroundColor,
     this.selectedForegroundColor,
@@ -70,6 +73,7 @@ class FFNavigationBarItem extends StatelessWidget {
     this.badgeColor,
     this.borderRadius,
     this.badgeContent,
+    this.position,
 
   }) : super(key: key);
 
