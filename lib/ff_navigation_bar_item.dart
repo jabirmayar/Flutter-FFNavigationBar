@@ -29,7 +29,7 @@ class FFNavigationBarItem extends StatelessWidget {
   BorderRadiusGeometry? borderRadius = BorderRadius.circular(8);
   Widget? badgeContent = Text('BADGE', style: TextStyle(color: Colors.white));
   BadgePosition? position;
-  BadgeAnimationType? animationType = BadgeAnimationType.scale,
+  BadgeAnimationType? animationType = BadgeAnimationType.scale;
 
   int? index;
   int? selectedIndex;
